@@ -37,7 +37,7 @@
   * List
     * Literal: `[ 1, 2, 3 ]`
 
-### Basic constructs
+### Basic concepts
 
 #### Assignment (form of pattern matching)
 
@@ -53,6 +53,21 @@
 ```
   * Variable only binds once per match,
   * Use `^` to prevent reassignment: `[^a,2] = [1,2]` does not work if `a = 2`
+
+#### Immutability
+
+  * Immutable datastructures make it easier to get parallelism right
+  * Can still rebind variables
+  * Create a copy with the changes if you need to create a new value
+  * Problems:
+    * Copying: don't copy everything into a new datastructure, instead link the
+      elements in a shallow manner
+    * Garbage collection: Is faster because the heap is spread out across
+      multiple processes and hence smaller which also means faster
+
+### Operators
+  * `+`: `1 + 2 # => 3`
+  * `|`: `[1 | [2, 3]] # => [1,2,3]`
 
 ### Functions
   * Parentheses around function arguments are optional
