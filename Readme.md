@@ -24,6 +24,7 @@
     * Functions do the data transformation (-> no side-effects)
   * Threads and processes are very lightweight, use them deliberately
   * Metaprogramming is fundamental part of the language
+  * All datastructures are immutable
 
 ## Syntax
 
@@ -31,8 +32,27 @@
   * Keywords (seem to work like ruby)
   * String
     * Literal: `"Hello"`
-  * Integers
+  * Integer
     * Literal: `1`
+  * List
+    * Literal: `[ 1, 2, 3 ]`
+
+### Basic constructs
+
+#### Assignment (form of pattern matching)
+
+  * Works in both directions, will fail if it can't be solved (`MatchError`)
+  * Similar to algebraic `=`
+  * Variable to be declared needs to be on left side (`[1,2] = list` won't work)
+  * Can ignore a value with `_`
+```
+  list = [1,2,3]
+  [a, 2, b] = list  # works
+  [a, _, b] = list  # works
+  [a, 1, b] = list  # won't work
+```
+  * Variable only binds once per match,
+  * Use `^` to prevent reassignment: `[^a,2] = [1,2]` does not work if `a = 2`
 
 ### Functions
   * Parentheses around function arguments are optional
