@@ -29,13 +29,47 @@
 ## Syntax
 
 ### Types
-  * Keywords (seem to work like ruby)
+  * Atoms (Symbols in ruby)
+    * Name = value
+    * Literal: `:fred`, `:"something else"`, `:is_good?`
   * String
     * Literal: `"Hello"`
+    * Are really UTF8 binaries (see below)
   * Integer
-    * Literal: `1`
+    * Literal: `1`, `0xcafe`, `0o765`, `0b10110`, `1_000_000`
+  * Floating point
+    * Literal `1.23`
+  * Range:
+    * Literal `1..3`
+  * Regular expression
+    * Perl compatible (same as ruby / should be able to use rubular.com)
+    * Literal: `~r{[aeiou]}`
+  * Tuple
+    * Use them for return values, then use pattern matching for control flow
+    * Literal: `{ 1, 2 }`
   * List
+    * Not arrays, linked datastructure instead
+    * Random order access is expensive
     * Literal: `[ 1, 2, 3 ]`
+    * Keyword lists: `[a: 1, b: 2]` is shorthand for `[{a: 1}, {b: 2}]`
+    * Concatenation: `[1,2] ++ [3,4] #=> [1,2,3,4]`
+    * Intersection: `[1,2] -- [2,3] #=> [1]`
+    * Inclusion: `1 in [1,2,3] #=> true`
+  * Map
+    * Only one key per entry (keyword lists allow duplication)
+    * Literal: `m = %{ :a => 1 }` (same as `%{ a: 1 }`)
+    * Access with `m[:a]` or `m.a` (latter one only works with atom keys)
+  * Binaries
+    * Sequence of bits
+    * Literal: `<< 1,2 >>`
+
+### Functions
+  * Parentheses around function arguments are optional
+  * `cd/1` means that the function `cd` takes one argument
+  * If keyword list is last argument, you can leave off the `[]`
+
+### Modules
+  * Modules and functions are separated by a `.` (`IO.puts`)
 
 ### Basic concepts
 
@@ -45,7 +79,7 @@
   * Similar to algebraic `=`
   * Variable to be declared needs to be on left side (`[1,2] = list` won't work)
   * Can ignore a value with `_`
-```
+```elixir
   list = [1,2,3]
   [a, 2, b] = list  # works
   [a, _, b] = list  # works
@@ -53,6 +87,35 @@
 ```
   * Variable only binds once per match,
   * Use `^` to prevent reassignment: `[^a,2] = [1,2]` does not work if `a = 2`
+
+#### Operators
+  * `+`: `1 + 2 # => 3`
+  * `|`: `[1 | [2, 3]] # => [1,2,3]`
+  * `div`: `div(2,3) #=> 0`
+  * `rem`: `rem(2,3) #=> 2`
+
+#### Conventions/Naming
+  * Identifiers: `/[a-z|A-Z|0-9|_|\?|!]+/`
+  * Module, record, protocol and behavior: BumpyCase
+  * Everything else: snake_case
+  * Comments start with `#`
+
+#### Truthiness
+  * `true`, `false`, `nil`
+  * `false` and `nil` are treated as falsy in boolean contexts, everything else is true
+
+#### Equality
+  * Strict `===` and value `==`
+```elixir
+1 === 1.0 # => false
+1 !== 1.0 # => true
+1 == 1.0 # => true
+1 != 1.0 # => false
+```
+
+#### Boolean operators
+  * `and`, `or` and `not` expect `true` or `false` as first argument
+  * `&&`, `||`, `!` use truthiness
 
 #### Immutability
 
@@ -65,13 +128,3 @@
     * Garbage collection: Is faster because the heap is spread out across
       multiple processes and hence smaller which also means faster
 
-### Operators
-  * `+`: `1 + 2 # => 3`
-  * `|`: `[1 | [2, 3]] # => [1,2,3]`
-
-### Functions
-  * Parentheses around function arguments are optional
-  * `cd/1` means that the function `cd` takes one argument
-
-### Modules
-  * Modules and functions are separated by a `.` (`IO.puts`)
