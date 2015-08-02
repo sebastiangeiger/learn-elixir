@@ -35,6 +35,7 @@
   * String
     * Literal: `"Hello"`
     * Are really UTF8 binaries (see below)
+    * Interplation: "1 + 1 = #{1+1}"
   * Integer
     * Literal: `1`, `0xcafe`, `0o765`, `0b10110`, `1_000_000`
   * Floating point
@@ -68,6 +69,15 @@
   * `cd/1` means that the function `cd` takes one argument
   * If keyword list is last argument, you can leave off the `[]`
 
+#### Anonymous functions
+
+```elixir
+sum = fn (a,b) -> a + b end # Anonymous function
+sum.(1,2) # . needed for anonymous function
+swap = fn { a, b } -> { b, a } end
+swap.({6,8}) # arguments are pattern matched
+```
+
 ### Modules
   * Modules and functions are separated by a `.` (`IO.puts`)
 
@@ -80,10 +90,10 @@
   * Variable to be declared needs to be on left side (`[1,2] = list` won't work)
   * Can ignore a value with `_`
 ```elixir
-  list = [1,2,3]
-  [a, 2, b] = list  # works
-  [a, _, b] = list  # works
-  [a, 1, b] = list  # won't work
+list = [1,2,3]
+[a, 2, b] = list  # works
+[a, _, b] = list  # works
+[a, 1, b] = list  # won't work
 ```
   * Variable only binds once per match,
   * Use `^` to prevent reassignment: `[^a,2] = [1,2]` does not work if `a = 2`
