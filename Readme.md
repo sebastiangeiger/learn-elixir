@@ -60,6 +60,25 @@
     * Only one key per entry (keyword lists allow duplication)
     * Literal: `m = %{ :a => 1 }` (same as `%{ a: 1 }`)
     * Access with `m[:a]` or `m.a` (latter one only works with atom keys)
+    * Update with `m1 = %{ m | a: "one" }`
+      * Will blow up if key `a` does not exist
+      * Use `Dict.put_new/3` instead
+  * HashDict
+    * Use Dict behavior -> Let's you swap Map for HashDict
+    * No literal, use `HashDict.new` and `Enum.into`
+  * Struct
+    * Module that wraps a (limited) Map
+    * Typesafe maps
+    * Literal is similar to a `Map`
+    * May define methods in the User module, these are class level methods however
+    * Modify with `put_in`, `update_in`, `get_in`, `get_and_update_in`
+    ```
+    defmodule User do
+      defstruct name: "", admin: false
+    end
+    u = %User{name: "Sebastian"}
+    u1 = %User{ u | admin: false}
+    ```
   * Binaries
     * Sequence of bits
     * Literal: `<< 1,2 >>`
@@ -138,3 +157,7 @@ list = [1,2,3]
     * Garbage collection: Is faster because the heap is spread out across
       multiple processes and hence smaller which also means faster
 
+#### Protocols
+
+  * = interfaces in other languages
+  * `Access` is one
