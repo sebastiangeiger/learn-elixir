@@ -79,6 +79,8 @@
     u = %User{name: "Sebastian"}
     u1 = %User{ u | admin: false}
     ```
+  * Set
+    * Only implementation: `HashSet`
   * Binaries
     * Sequence of bits
     * Literal: `<< 1,2 >>`
@@ -99,6 +101,8 @@ swap.({6,8}) # arguments are pattern matched
 
 ### Modules
   * Modules and functions are separated by a `.` (`IO.puts`)
+  * = collection of functions grouped by a purpose
+    * Example: `Enum` has functions that deal with collections
 
 ### Basic concepts
 
@@ -161,3 +165,16 @@ list = [1,2,3]
 
   * = interfaces in other languages
   * `Access` is one
+
+### Collections
+  * `Enumerable` is a protocol
+  * `Enum` and `Stream` contain functions that handle collections
+    * `Enum` contains more standard functions
+    * `Stream` is for lazy collections
+  * Some functions
+    * `Enum.to_list`
+    * `Enum.concat`
+    * `Enum.map`/`Enum.filter`/`Enum.sort`/`Enum.reject`
+    * `Enum.max`/`Enum.max_by`
+    * ...
+
