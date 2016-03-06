@@ -1,3 +1,30 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Elixir](#elixir)
+  - [Installation & basics](#installation-&-basics)
+  - [Philosophy](#philosophy)
+  - [Syntax](#syntax)
+    - [Types](#types)
+    - [Functions](#functions)
+      - [Anonymous functions](#anonymous-functions)
+    - [Modules](#modules)
+    - [Basic concepts](#basic-concepts)
+      - [Assignment (form of pattern matching)](#assignment-form-of-pattern-matching)
+      - [Operators](#operators)
+      - [Conventions/Naming](#conventionsnaming)
+      - [Truthiness](#truthiness)
+      - [Equality](#equality)
+      - [Boolean operators](#boolean-operators)
+      - [Immutability](#immutability)
+      - [Protocols](#protocols)
+    - [Collections](#collections)
+      - [Enum](#enum)
+      - [Stream](#stream)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Elixir
 
 ## Installation & basics
