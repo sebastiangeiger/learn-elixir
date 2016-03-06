@@ -21,6 +21,12 @@
   - [Enum](#enum)
   - [Stream](#stream)
   - [Comprehensions](#comprehensions)
+- [Strings and Binaries](#strings-and-binaries)
+  - [Single quoted](#single-quoted)
+  - [Double quoted](#double-quoted)
+  - [More exotic stuff](#more-exotic-stuff)
+- [Control Flow](#control-flow)
+- [Exceptions](#exceptions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -236,3 +242,39 @@ list = [1,2,3]
     #=> [{1, 3}, {1, 4}, {2, 3}, {2, 4}]
     ```
   * Works on binaries as well, but generator needs to be enclosed in `<< >>`
+
+## Strings and Binaries
+
+### Single quoted
+  * Called Character Lists
+  * Libraries designed to work on Strings won't work
+  * Check with `is_list`
+
+### Double quoted
+  * Called Strings or Binaries
+  * `[ head | tail ]` pattern matching won't work
+  * Check with `is_binary`
+  * Pattern matching: `<< head :: utf8, tail :: binary >> = "asd"`
+  * Look for `<<>>` instead of `[]` when recursing
+
+### More exotic stuff
+  * Heredocs: `'''` or `"""`
+  * Sigils: Example: `~w"A list of words"`
+    * Possible letters: `S,s,W,w,C,c,R,r`
+    * Possible deleimiters: `<>,{},[],(),||,//,"",''`
+
+## Control Flow
+
+  * Can be mostly avoided by using pattern matching
+    * `if` / `unless`
+    * `cond`
+    * `case`
+
+## Exceptions
+
+  * Use for things that should never happen
+  * Used very sparingly
+  * Should propagate up to an external supervising process
+  * `raise "Giving Up"` is same as `raise RuntimeError, message: "Giving Up"`
+  * Return Tupels are used where other languages raise exceptions (e.g. File cannot be opened)
+  * By convention methods that end in `!` usually raise exceptions
