@@ -171,10 +171,34 @@ list = [1,2,3]
   * `Enum` and `Stream` contain functions that handle collections
     * `Enum` contains more standard functions
     * `Stream` is for lazy collections
-  * Some functions
-    * `Enum.to_list`
-    * `Enum.concat`
-    * `Enum.map`/`Enum.filter`/`Enum.sort`/`Enum.reject`
-    * `Enum.max`/`Enum.max_by`
-    * ...
 
+#### Enum
+
+  * `Enum.to_list`
+  * `Enum.concat`
+  * `Enum.map`/`Enum.filter`/`Enum.sort`/`Enum.reject`
+  * `Enum.max`/`Enum.max_by`
+  * ...
+
+#### Stream
+
+  * `Streams` are composable Enumerators
+  * Can be inifinite
+  * They don't create multiple intermediary collections,
+    instead the elements are pushed through one-by-one
+  * Libraries support/emit Streams:
+    * IO.stream
+    * File.stream!
+    * ...
+  * Implementing Streams:
+    * `Stream.cycle`: Infinite Stream from an Enumerable
+    * `Stream.repeatedly`: Execute fn everytime you're asked for an element
+    * `Stream.iterate`:
+      Takes start_value and fn to produce next_value, next_value is start_value
+      of next iteration
+    * `Stream.unfold`:
+      Similar to `iterate` but start_value doesn't have to be next_value
+      --> Allows you to implement fibonnaci
+    * `Stream.resource`: Builds on `unfold` to work with Files/Network
+      * Takes `fn` that delivers `start_value`
+      * Takes another `fn` to close the resource
