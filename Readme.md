@@ -27,6 +27,7 @@
   - [More exotic stuff](#more-exotic-stuff)
 - [Control Flow](#control-flow)
 - [Exceptions](#exceptions)
+- [`mix`](#mix)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -278,3 +279,7 @@ list = [1,2,3]
   * `raise "Giving Up"` is same as `raise RuntimeError, message: "Giving Up"`
   * Return Tupels are used where other languages raise exceptions (e.g. File cannot be opened)
   * By convention methods that end in `!` usually raise exceptions
+
+## `mix`
+
+  * `mix new $name` allows you to create a new project that follows standard conventions
