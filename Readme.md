@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Contents**
 
 - [Installation & basics](#installation-&-basics)
 - [Philosophy](#philosophy)
@@ -20,6 +20,7 @@
 - [Collections](#collections)
   - [Enum](#enum)
   - [Stream](#stream)
+  - [Comprehensions](#comprehensions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -189,6 +190,8 @@ list = [1,2,3]
 
 ## Collections
   * `Enumerable` is a protocol
+  * `Collectable` is a protocol as well, it allows insertion of elements into a
+    collection
   * `Enum` and `Stream` contain functions that handle collections
     * `Enum` contains more standard functions
     * `Stream` is for lazy collections
@@ -204,7 +207,7 @@ list = [1,2,3]
 ### Stream
 
   * `Streams` are composable Enumerators
-  * Can be inifinite
+  * Can be infinite
   * They don't create multiple intermediary collections,
     instead the elements are pushed through one-by-one
   * Libraries support/emit Streams:
@@ -213,7 +216,7 @@ list = [1,2,3]
     * ...
   * Implementing Streams:
     * `Stream.cycle`: Infinite Stream from an Enumerable
-    * `Stream.repeatedly`: Execute fn everytime you're asked for an element
+    * `Stream.repeatedly`: Execute fn every time you're asked for an element
     * `Stream.iterate`:
       Takes start_value and fn to produce next_value, next_value is start_value
       of next iteration
@@ -223,3 +226,13 @@ list = [1,2,3]
     * `Stream.resource`: Builds on `unfold` to work with Files/Network
       * Takes `fn` that delivers `start_value`
       * Takes another `fn` to close the resource
+
+### Comprehensions
+
+  * `result = for $generator_or_filter [, into: $value ], do: $expression`
+  * Generator consists of 1 or more `pattern <- list` statements, they are nested:
+    ```elixir
+    for x <- [1,2], y <- [3,4], do: {x,y}
+    #=> [{1, 3}, {1, 4}, {2, 3}, {2, 4}]
+    ```
+  * Works on binaries as well, but generator needs to be enclosed in `<< >>`
