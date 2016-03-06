@@ -2,30 +2,26 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Elixir](#elixir)
-  - [Installation & basics](#installation-&-basics)
-  - [Philosophy](#philosophy)
-  - [Syntax](#syntax)
-    - [Types](#types)
-    - [Functions](#functions)
-      - [Anonymous functions](#anonymous-functions)
-    - [Modules](#modules)
-    - [Basic concepts](#basic-concepts)
-      - [Assignment (form of pattern matching)](#assignment-form-of-pattern-matching)
-      - [Operators](#operators)
-      - [Conventions/Naming](#conventionsnaming)
-      - [Truthiness](#truthiness)
-      - [Equality](#equality)
-      - [Boolean operators](#boolean-operators)
-      - [Immutability](#immutability)
-      - [Protocols](#protocols)
-    - [Collections](#collections)
-      - [Enum](#enum)
-      - [Stream](#stream)
+- [Installation & basics](#installation-&-basics)
+- [Philosophy](#philosophy)
+- [Types](#types)
+- [Functions](#functions)
+  - [Anonymous functions](#anonymous-functions)
+- [Modules](#modules)
+- [Basic concepts](#basic-concepts)
+  - [Assignment (form of pattern matching)](#assignment-form-of-pattern-matching)
+  - [Operators](#operators)
+  - [Conventions/Naming](#conventionsnaming)
+  - [Truthiness](#truthiness)
+  - [Equality](#equality)
+  - [Boolean operators](#boolean-operators)
+  - [Immutability](#immutability)
+  - [Protocols](#protocols)
+- [Collections](#collections)
+  - [Enum](#enum)
+  - [Stream](#stream)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Elixir
 
 ## Installation & basics
   * `brew update && brew install elixir`
@@ -53,9 +49,7 @@
   * Metaprogramming is fundamental part of the language
   * All datastructures are immutable
 
-## Syntax
-
-### Types
+## Types
   * Atoms (Symbols in ruby)
     * Name = value
     * Literal: `:fred`, `:"something else"`, `:is_good?`
@@ -112,12 +106,12 @@
     * Sequence of bits
     * Literal: `<< 1,2 >>`
 
-### Functions
+## Functions
   * Parentheses around function arguments are optional
   * `cd/1` means that the function `cd` takes one argument
   * If keyword list is last argument, you can leave off the `[]`
 
-#### Anonymous functions
+### Anonymous functions
 
 ```elixir
 sum = fn (a,b) -> a + b end # Anonymous function
@@ -126,14 +120,14 @@ swap = fn { a, b } -> { b, a } end
 swap.({6,8}) # arguments are pattern matched
 ```
 
-### Modules
+## Modules
   * Modules and functions are separated by a `.` (`IO.puts`)
   * = collection of functions grouped by a purpose
     * Example: `Enum` has functions that deal with collections
 
-### Basic concepts
+## Basic concepts
 
-#### Assignment (form of pattern matching)
+### Assignment (form of pattern matching)
 
   * Works in both directions, will fail if it can't be solved (`MatchError`)
   * Similar to algebraic `=`
@@ -148,23 +142,23 @@ list = [1,2,3]
   * Variable only binds once per match,
   * Use `^` to prevent reassignment: `[^a,2] = [1,2]` does not work if `a = 2`
 
-#### Operators
+### Operators
   * `+`: `1 + 2 # => 3`
   * `|`: `[1 | [2, 3]] # => [1,2,3]`
   * `div`: `div(2,3) #=> 0`
   * `rem`: `rem(2,3) #=> 2`
 
-#### Conventions/Naming
+### Conventions/Naming
   * Identifiers: `/[a-z|A-Z|0-9|_|\?|!]+/`
   * Module, record, protocol and behavior: BumpyCase
   * Everything else: snake_case
   * Comments start with `#`
 
-#### Truthiness
+### Truthiness
   * `true`, `false`, `nil`
   * `false` and `nil` are treated as falsy in boolean contexts, everything else is true
 
-#### Equality
+### Equality
   * Strict `===` and value `==`
 ```elixir
 1 === 1.0 # => false
@@ -173,11 +167,11 @@ list = [1,2,3]
 1 != 1.0 # => false
 ```
 
-#### Boolean operators
+### Boolean operators
   * `and`, `or` and `not` expect `true` or `false` as first argument
   * `&&`, `||`, `!` use truthiness
 
-#### Immutability
+### Immutability
 
   * Immutable datastructures make it easier to get parallelism right
   * Can still rebind variables
@@ -188,18 +182,18 @@ list = [1,2,3]
     * Garbage collection: Is faster because the heap is spread out across
       multiple processes and hence smaller which also means faster
 
-#### Protocols
+### Protocols
 
   * = interfaces in other languages
   * `Access` is one
 
-### Collections
+## Collections
   * `Enumerable` is a protocol
   * `Enum` and `Stream` contain functions that handle collections
     * `Enum` contains more standard functions
     * `Stream` is for lazy collections
 
-#### Enum
+### Enum
 
   * `Enum.to_list`
   * `Enum.concat`
@@ -207,7 +201,7 @@ list = [1,2,3]
   * `Enum.max`/`Enum.max_by`
   * ...
 
-#### Stream
+### Stream
 
   * `Streams` are composable Enumerators
   * Can be inifinite
