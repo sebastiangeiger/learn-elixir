@@ -4,7 +4,7 @@ defmodule Issues.Mixfile do
   def project do
     [app: :issues,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps]
@@ -12,9 +12,9 @@ defmodule Issues.Mixfile do
 
   # Configuration for the OTP application
   #
-  # Type `mix help compile.app` for more information
+  # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :httpoison]]
   end
 
   # Dependencies can be Hex packages:
@@ -25,8 +25,8 @@ defmodule Issues.Mixfile do
   #
   #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
   #
-  # Type `mix help deps` for more examples and options
+  # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{ :httpoison, "~> 0.4" }]
   end
 end
