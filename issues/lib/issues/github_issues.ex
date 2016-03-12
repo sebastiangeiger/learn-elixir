@@ -6,6 +6,10 @@ defmodule Issues.GithubIssues do
     |> handle_response
   end
 
+  def fetch do
+    fetch("elixir-lang", "elixir")
+  end
+
   def issues_url(user, project) do
     "https://api.github.com/repos/#{user}/#{project}/issues"
   end
